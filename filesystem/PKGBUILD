@@ -5,11 +5,11 @@
 
 pkgname=filesystem
 pkgver=2023.02.07
-pkgrel=2
+pkgrel=3
 pkgdesc='Base filesystem'
 arch=('i686' 'x86_64')
 license=('spdx:BSD-3-Clause')
-url='https://github.com/msys2/MSYS2-packages/tree/master/filesystem'
+url='https://github.com/msys2-mcf/MSYS2-packages/tree/master/filesystem'
 provides=('msys2-base')
 replaces=('msys2-base')
 msys2_references=(
@@ -30,6 +30,7 @@ source=('bash.bash_logout'
         'mingw64.ico'
         'msys2.ico'
         'ucrt64.ico'
+        'mcf64.ico'
         'clang64.ico'
         'clang32.ico'
         'clangarm64.ico'
@@ -65,16 +66,17 @@ sha256sums=('742a7d66b7a5ebd2b8461728c5b44a46b2305fd2116208eecae5f45828938ea0'
             '793b9450a1a59a6c294e51fd0c2a47090d68c68ff2f33a25a11b45f6408c3917'
             '733e97cbb823773e1a08a91a41035a7692bc0ff270d3c894224911b4b091db44'
             '56d4080c15dff89a6263f3d5f9aa68849b2062179cabd6d78edfe0e3af6bf64a'
+            '56d4080c15dff89a6263f3d5f9aa68849b2062179cabd6d78edfe0e3af6bf64a'
             '58f7431d7d8d9d09ebd3185c090404682d760bf18c27f94085007b037a5889bd'
             '3b7af99516768485383b34d606749e6f98a250372a8191bc8d3a962d66bdfe35'
-            '390b7471838d14fd41f97f49616dc444454ebc90aea1da54a20799720d4f3772'
-            '5f7aa3a776dbdaae78a27e608bf004bf50d5aaace2c2b03581d940b771bc8582'
+            '2f78038f255ddb697558e539c47b034c23f4099cd7350f076239a2111c9e270a'
+            '195fff7709f94bee821890060c3c562845f5f9be7eb9d32888222287a4415bbe'
             '91f1f918cf13deab0124082086e990786113b0e710dbda4678d8fc14905ad94d'
             'b8abe6231cd2b089d708d3e3097ef8c279af1e1594aa15c6eaab4150ed9dffdc'
             '6c0ca979c7b146b3750103b1296a399764f4e1b222ee091d3aa072b6da16c1a5'
             'cbec90c9403826bf6d8dd1fed16240b9d8695ec15df5dcdab7e485bb46c016ab'
             'a2ec65de2adb0277f51001463c1a0759f8a5bc35cf2f213fa26ee73df52c5280'
-            'ad9873e18169ca87194af3413bdcbda536d9600b4f7d24fa9f7d59928309ff4a'
+            'a9bb1aeb7a77960a58de8f58d7afc1e5ed351db8fc99e350c039a33bc8622c95'
             'f63241cc56aa7b7ec6962d19991d211b4e1641b78ba5226835118ab493830a8b'
             'e96c1f54ffff792e738aa032815c82c30821b0683806e5ed0ba2a759db2fd494'
             '3a4d629d72ab8ac58427097c3a8915c4e8186f819cd369c2da5eca955d08fceb'
@@ -85,7 +87,7 @@ sha256sums=('742a7d66b7a5ebd2b8461728c5b44a46b2305fd2116208eecae5f45828938ea0'
             'caf25e3390331c6a22cc91f1c1bc551a9f87c59171dd3ef7b3b6016859a10fb5'
             '28c42ec8a6888e63b2156a802d93e74b544eff211ec688fb6ce8e67e12b81156'
             '26bf8d1acade9431d60c035a7ddfa9cb0775d5b9a457c5aca56f51c5f2f93f98'
-            '1fef172ac99eef561100da9eecb7712786dff8dd73f4a97eb39462bde0275af8')
+            '686a3fcd6235ccd661fc6c7731ded6c320a0fe1790fb1c61e83a80b66da947f8')
 
 build() {
   cd ${srcdir}
@@ -127,6 +129,7 @@ package() {
   install -m644 ${srcdir}/mingw32.ico mingw32.ico
   install -m644 ${srcdir}/mingw64.ico mingw64.ico
   install -m644 ${srcdir}/ucrt64.ico ucrt64.ico
+  install -m644 ${srcdir}/mcf64.ico mcf64.ico
   install -m644 ${srcdir}/clang64.ico clang64.ico
   install -m644 ${srcdir}/clang32.ico clang32.ico
   install -m644 ${srcdir}/clangarm64.ico clangarm64.ico
@@ -161,7 +164,7 @@ package() {
   install -D -m644 ${srcdir}/redirect-config.site usr/local/etc/config.site
 
   # setup /mingw hierarchies
-  for m in mingw32 mingw64 clang32 clang64 clangarm64 ucrt64; do
+  for m in mingw32 mingw64 clang32 clang64 clangarm64 ucrt64 mcf64; do
     install -d -m755 ${m}
     for d in bin etc include lib share; do
       install -d -m755 ${m}/${d}

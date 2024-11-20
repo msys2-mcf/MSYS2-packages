@@ -40,6 +40,7 @@ if "x%~1" == "x-msys2" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=MSYS& go
 if "x%~1" == "x-mingw32" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=MINGW32& goto :checkparams
 if "x%~1" == "x-mingw64" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=MINGW64& goto :checkparams
 if "x%~1" == "x-ucrt64" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=UCRT64& goto :checkparams
+if "x%~1" == "x-mcf64" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=MCF64& goto :checkparams
 if "x%~1" == "x-clang64" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=CLANG64& goto :checkparams
 if "x%~1" == "x-clang32" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=CLANG32& goto :checkparams
 if "x%~1" == "x-clangarm64" shift& set /a msys2_shiftCounter+=1& set MSYSTEM=CLANGARM64& goto :checkparams
@@ -113,6 +114,9 @@ if "%MSYSTEM%" == "MINGW32" (
 ) else if "%MSYSTEM%" == "CLANG32" (
   set "CONTITLE=MinGW Clang x32"
   set "CONICON=clang32.ico"
+) else if "%MSYSTEM%" == "MCF32" (
+  set "CONTITLE=MinGW MCF x32"
+  set "CONICON=mcf32.ico"
 ) else if "%MSYSTEM%" == "CLANGARM64" (
   set "CONTITLE=MinGW Clang ARM64"
   set "CONICON=clangarm64.ico"
@@ -206,7 +210,7 @@ echo Usage:
 echo     %~1 [options] [login shell parameters]
 echo.
 echo Options:
-echo     -mingw32 ^| -mingw64 ^| -ucrt64 ^| -clang32 ^| -clang64 ^|
+echo     -mingw32 ^| -mingw64 ^| -ucrt64 ^| -mcf64 ^| -clang32 ^| -clang64 ^|
 echo     -msys[2] ^| -clangarm64           Set shell type
 echo     -defterm ^| -mintty ^| -conemu     Set terminal type
 echo     -here                            Use current directory as working
